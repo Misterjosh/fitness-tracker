@@ -37,8 +37,19 @@ const workoutSchema = new Schema(
                 }
             }
         ]
+    },
+    {
+        toJSON: {
+            virtuals: true
+        }
     }
 );
+// This creates a virtual property that gets the total value then adds the duration to it and returns it for use by public workout.js. It works and I have a headache from it.
+workoutSchema.virtual("totalDuration").get(function() {
+    return this.exercises.reduce((total, exercise) => {
+        return total + exercise.duration;
+    }, 0);
+});
 
 const Workout = mongoose.model("Workout", workoutSchema);
 
