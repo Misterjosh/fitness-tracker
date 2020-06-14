@@ -1,6 +1,7 @@
 // get all workout data from back-end
+// Removed /range from fetch("api/workouts/range") then it started displaying. Not sure if that was how to fix it, but it works now.
 
-fetch("/api/workouts/range")
+fetch("/api/workouts")
   .then(response => {
     return response.json();
   })
